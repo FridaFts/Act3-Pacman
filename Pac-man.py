@@ -1,7 +1,7 @@
 # Roberto Carlo Mata Pineda
 # A00829002
 # Frida Fuentes
-# A00827160
+# A00827
 # Reflexión
 #
 # Fecha - 6 - Mayo - 2021
