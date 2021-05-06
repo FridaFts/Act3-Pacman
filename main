@@ -2,7 +2,7 @@
 # A00829002
 # Frida Fuentes
 # A00827160
-# Reflexión (Agregada en DOCS)
+# Reflexión
 #
 # Fecha - 6 - Mayo - 2021
 
@@ -27,10 +27,10 @@ pacman = vector(-40, -80)
 # Lista de listas de posición y dirección de cada fantasma
 # CAMBIO PARA HACERLOS MAS RAPIDOS A LOS FANTASMAS
 ghosts = [
-    [vector(-180, 160), vector(13, 0)],
-    [vector(-180, -160), vector(13, 10)],
-    [vector(100, 160), vector(0, -13)],
-    [vector(100, -160), vector(-13, 0)],
+    [vector(-180, 160), vector(5, 0)],
+    [vector(-180, -160), vector(5, 10)],
+    [vector(100, 160), vector(0, -5)],
+    [vector(100, -160), vector(-5, 0)],
 ]
 
 # Lista del tablero 20 columnas x 20 renglones
@@ -57,7 +57,7 @@ tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ]
 
-# Dibuuja un cuadrado con su esq inf izq en (x,y)
+# Dibuja un cuadrado con su esq inf izq en (x,y)
 def square(x, y):
     "Draw square using path at (x, y)."
     path.up()
@@ -101,10 +101,12 @@ def world():
     "Draw world using path."
     bgcolor('black')
     path.color('blue')
+    
+
 
 #Recorre toda lista de (titles)
     for index in range(len(tiles)):
-        #Extrae el valor que existe en posiciín index
+        #Extrae el valor que existe en posición index
         tile = tiles[index]
 
 #Si el valor es mayor que 0
@@ -121,9 +123,20 @@ def world():
                 path.dot(2, 'white')
 
 def move():
-    #colores = ['red', 'gray', 'blue', 'yellow']
+    colores = ['red', 'black', 'white', 'green']
     "Move pacman and all ghosts."
     writer.undo()
+    writer.write(state['score'])
+    writer.up
+    writer.goto(-200,-200)
+    writer.write('Roberto Mata' , font=('Arial',8,'normal'))
+    writer.up
+    writer.goto(-100,-200)
+    writer.write('Frida Fuentes', font=('Arial',8,'normal'))
+    writer.up()
+    writer.goto(180,180)
+    writer.color('white')
+    #valor = state['score']
     writer.write(state['score'])
 
     # Limpia la ventana
@@ -154,7 +167,7 @@ def move():
     goto(pacman.x + 10, pacman.y + 10)
     # 1ra vez que se dibuja el pacman
     dot(20, 'yellow')
-#k=0
+    k=0
     for point, course in ghosts:
         # Valida si el fantasma poin se puede mover en course
         if valid(point + course):
@@ -163,10 +176,10 @@ def move():
         else: #Si el fantasma no se puede mover en esa dirección...
             # CAMBIO PARA HACERLOS MAS RAPIDOS A LOS FANTASMAS
             options = [
-                vector(13, 0),
-                vector(-13, 0),
-                vector(0, 13),
-                vector(0, -13),
+                vector(5, 0),
+                vector(-5, 0),
+                vector(0, 5),
+                vector(0, -5),
             ]
             
             #plan guarda la nueva dirección del fantasma
@@ -179,9 +192,9 @@ def move():
         # Mueve la posición del fantasma
         goto(point.x + 10, point.y + 10)
         # Dibuja el fantasma
-        dot(20, 'red')
-        #dot(20, colores[k])
-        #k = k + 1
+        #dot(20, 'red')
+        dot(20, colores[k])
+        k = k + 1
        
 
     update()
@@ -192,8 +205,12 @@ def move():
         if abs(pacman - point) < 20:
             writer.goto(-120,10)
             writer.write('GAME OVER' , font=('Arial',30,'normal'))
+            writer.goto(-120,-50)
+            pos = state['score']
+            writer.write(f'SCORE:{pos}' , font=('Arial',20,'normal'))
             return
 
+    update()
     ontimer(move, 100)
 
 def change(x, y):
@@ -210,10 +227,6 @@ hideturtle()
 # Oculta toda forma de dibujar se puede poner (True)
 tracer(False)
 # Mueve la turtle writer a posición 160,160
-writer.goto(160, 160)
-writer.color('white')
-#valor = state['score']
-writer.write(state['score'])
 # Activa los eventos del teclado
 listen()
 # En caso de que el usuario oprima tecla manda llamar función change
