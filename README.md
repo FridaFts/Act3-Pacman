@@ -40,6 +40,6 @@ esto puede decir que el juego ha concluido y deberemos de correr el codigo para 
 
 ![Construcción de Tablero](https://user-images.githubusercontent.com/83657415/117373169-5769b080-ae90-11eb-9c58-3c83eca72af2.jpg)
 
-Otra de las fotos que decidimos poner aqui es la construcción del tablero del juego, para esto lo que se movió en el codigo
+Otra de las fotos que decidimos poner aqui es el proceso de la construcción del tablero del juego, para esto lo que se movió en el codigo
 es una simple oración en Thonny. Lo que se cambio en especifico fue tracer(True), en si en el codigo esta opción aparecia como
-tracer(Flase), simplemente lo que se hico fue cambiar la palabra False por True.
+tracer(Flase), simplemente lo que se hico fue cambiar la palabra False por True. Para midificar la forma del tablero simplemente se cambio el orden de los números de la lista "tiles", los 0 es donde no hay tablero y los 1 representan el tablero donde se puede mover el pacman y los fantasmas.
